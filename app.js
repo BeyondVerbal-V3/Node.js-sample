@@ -1,7 +1,4 @@
 ﻿
-
-
-
 var opt = {
             url: {
                 tokenUrl: 'https://token.beyondverbal.com/token',
@@ -36,7 +33,7 @@ function getToken(callback){
 
 getToken(function(err,token){
     analyzeFile(token,fs.createReadStream(opt.audioFile), 
-                        { interval: false},//1000 }, //no analysis:false,  int interval(1000 =1sec) for pull analysis
+                        { interval: false}, //no analysis:false,  int interval(1000 =1sec) for pull analysis
                         function (err, res) {
                             if (!err) {
                                 console.log(JSON.stringify(res,null,4));
