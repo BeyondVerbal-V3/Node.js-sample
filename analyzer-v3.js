@@ -7,7 +7,9 @@ var extend = require('extend')
 
 var defaults = {
     tokenUrl: 'https://token.beyondverbal.com/token',
-    serverUrl: 'https://apiv3.beyondverbal.com/v3/recording/'
+    serverUrl: 'https://apiv3.beyondverbal.com/v3/recording/',
+    //set interval in milliseconds for streaming analysis
+    //interval:1000
 }
 
 
