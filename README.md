@@ -1,6 +1,8 @@
 # Node.js-sample
 The client application witch shows basic functionality of Beyond Verbal REST API
+
 It require('extend')   library
+
 For install in you project:  npm install extend --save
 
 
