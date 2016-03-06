@@ -19,32 +19,29 @@ var defaults = {
 // var Analyzer = require('./analyzer-v3')
 //
 //
-// var analyzer = new Analyzer('YOUR_API_KEY')
+// var analyzer = Analyzer('YOUR_API_KEY')
 //
 // analyzer.analyze(fs.createReadStream('C:/path/to/Sample.wav'),function(err,analysis){
 //     console.log(analysis);
 //   
 // });
-function Analyzer(apiKey, opts) {
-
+module.exports = (apiKey, opts) => {
     var tokenCahced = null;
     var options = extend({}, defaults, opts);
-    this.analyze = function (stream, callback) {
-
-        if (!tokenCahced) {
-            return getToken(apiKey, options, function (err, token) {
-                tokenCahced = token;
-                return analyzeFile(tokenCahced, stream, options, callback);
-            });
-        }
+    return {
+        analyze: (stream, callback) => {
+            if(!tokenCahced) {
+                return getToken(apiKey, options, function (err, token) {
+                    tokenCahced = token;
+                    return analyzeFile(tokenCahced, stream, options, callback);
+                });
+            }
 
         return analyzeFile(tokenCahced, stream, options, callback);
     }
-    return;
+        
+  };
 }
-
-
-module.exports = Analyzer;
 
 
 ///
