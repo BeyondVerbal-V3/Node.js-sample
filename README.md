@@ -11,7 +11,7 @@ Usage example
 var fs = require('fs')
 var Analyzer = require('./analyzer-v3')
 
-var analyzer = new Analyzer('YOUR_API_KEY')
+var analyzer = Analyzer('YOUR_API_KEY')
 
 analyzer.analyze(fs.createReadStream('C:/path/to/Sample.wav'),function(err,analysis){
   console.log(analysis);
