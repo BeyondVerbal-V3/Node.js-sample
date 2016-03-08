@@ -7,9 +7,7 @@ var extend = require('extend')
 
 var defaults = {
     tokenUrl: 'https://token.beyondverbal.com/token',
-    serverUrl: 'https://apiv3.beyondverbal.com/v3/recording/',
-    //set interval in milliseconds for streaming analysis
-    //interval:1000
+    serverUrl: 'https://apiv3.beyondverbal.com/v3/recording/'
 }
 
 
@@ -19,29 +17,32 @@ var defaults = {
 // var Analyzer = require('./analyzer-v3')
 //
 //
-// var analyzer = Analyzer('YOUR_API_KEY')
+// var analyzer = new Analyzer('YOUR_API_KEY')
 //
 // analyzer.analyze(fs.createReadStream('C:/path/to/Sample.wav'),function(err,analysis){
 //     console.log(analysis);
 //   
 // });
-module.exports = (apiKey, opts) => {
+function Analyzer(apiKey, opts) {
+
     var tokenCahced = null;
     var options = extend({}, defaults, opts);
-    return {
-        analyze: (stream, callback) => {
-            if(!tokenCahced) {
-                return getToken(apiKey, options, function (err, token) {
-                    tokenCahced = token;
-                    return analyzeFile(tokenCahced, stream, options, callback);
-                });
-            }
+    this.analyze = function (stream, callback) {
+
+        if (!tokenCahced) {
+            return getToken(apiKey, options, function (err, token) {
+                tokenCahced = token;
+                return analyzeFile(tokenCahced, stream, options, callback);
+            });
+        }
 
         return analyzeFile(tokenCahced, stream, options, callback);
     }
-        
-  };
+    return;
 }
+
+
+module.exports = Analyzer;
 
 
 ///
